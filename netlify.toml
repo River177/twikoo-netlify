@@ -1,8 +1,28 @@
 [build]
   functions = "netlify/functions"
 
+# 重定向规则：将根路径和 /api 路径重定向到函数路径（使用 200 状态码以保留 POST 数据）
+[[redirects]]
+  from = "/"
+  to = "/.netlify/functions/twikoo"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/api"
+  to = "/.netlify/functions/twikoo"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/twikoo"
+  status = 200
+  force = false
+
+# 为所有路径添加 CORS 头
 [[headers]]
-  for = "/.netlify/functions/*"
+  for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "https://river177.com"
     Access-Control-Allow-Methods = "GET, POST, PUT, DELETE, OPTIONS"

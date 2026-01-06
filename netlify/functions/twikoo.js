@@ -1,11 +1,11 @@
 const twikooHandler = require('twikoo-netlify').handler
 
-// CORS 配置 - 使用小写键名（Netlify Functions 要求）
+// CORS 配置 - 使用标准 HTTP 头格式
 const corsHeaders = {
-  'access-control-allow-origin': 'https://river177.com',
-  'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
-  'access-control-allow-headers': 'Content-Type, Authorization, X-Requested-With',
-  'access-control-allow-credentials': 'true',
+  'Access-Control-Allow-Origin': 'https://river177.com',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Requested-With',
+  'Access-Control-Allow-Credentials': 'true',
 }
 
 // 添加 CORS 头到响应的辅助函数
@@ -45,7 +45,7 @@ exports.handler = async (event, context) => {
       statusCode: 200,
       headers: {
         ...corsHeaders,
-        'access-control-max-age': '86400',
+        'Access-Control-Max-Age': '86400',
       },
       body: '',
     }
